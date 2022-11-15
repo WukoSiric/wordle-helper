@@ -38,7 +38,6 @@
         outline: none;
         color: white;
         border: 2px solid #3a3a3c;
-
         /* Disable user select */
         -webkit-touch-callout: none;
         -webkit-user-select: none;
