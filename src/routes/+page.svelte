@@ -1,5 +1,6 @@
 <script type="ts">
     import Footer from "./Footer.svelte";
+    import Slot from "./Slot.svelte";
 
     let word: String[] = []
     import * as inputs from './utils/inputs'
@@ -29,20 +30,20 @@
 <div class="page">
     <div class="header">
         <h1>🟩🟨Wordle Helper</h1>
-        
         <p>Type in your guess and try clicking each box!</p>
     </div>
 
     <div class="inputs">
-        {#each word as char, i}
-            <div class="slot">
-                {word[i]}
-            </div>
+        {#each Array(5) as _, i}
+            {#if word.length > i}
+                <Slot bind:char={word[i]} />
+            {:else}
+                <Slot />
+            {/if}
         {/each}
     </div>
 
     <Footer --color="white" />
-
 </div>
 
 <style>
@@ -77,14 +78,5 @@
         display: flex;
         gap: 13px;
         margin-top: 50px;
-    }
-
-    .slot {
-        cursor: pointer;
-        padding: 20px;
-        font-size: 5em;
-        outline: none;
-        color: white;
-        border: 2px solid #3a3a3c;
     }
 </style>
