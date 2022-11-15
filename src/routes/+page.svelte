@@ -47,11 +47,6 @@
 </div>
 
 <style>
-    *, :global(body) {
-        background-color: #121213;
-        font-family: Helvetica, Arial, sans-serif;
-    }
-
     .page {
         margin: auto;
         width: 100%;
