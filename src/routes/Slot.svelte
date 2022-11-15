@@ -1,11 +1,10 @@
 <script lang="ts">
+    import { State } from "./utils/types"
     export let char: String = "_"
-    enum State {
-        Hidden = "#2c2c2e",
-        Revealed = "#a5902d",
-        Correct = "#447d3d"
-    }
     export let state: State = State.Hidden
+
+    let colors: String[] = ["#2c2c2e", "#a5902d", "#447d3d"]
+    $: current_color = colors[state] 
 
     function update_state() {
         if (state === State.Hidden) {
@@ -16,10 +15,10 @@
             state = State.Hidden
         }
     }
-
 </script>
 
-<div class="slot" on:click={update_state} style="background-color: {state}">
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div class="slot" on:click={update_state} style="background-color: {current_color}">
     {char}
 </div>
 

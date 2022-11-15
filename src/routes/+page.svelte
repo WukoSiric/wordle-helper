@@ -1,8 +1,10 @@
 <script type="ts">
+    import type { State } from "./utils/types"
     import Footer from "./Footer.svelte";
     import Slot from "./Slot.svelte";
 
     let word: String[] = []
+    let slot_states: State[] = []
     import * as inputs from './utils/inputs'
 
     function handle_input(event: KeyboardEvent) {
@@ -17,6 +19,7 @@
             }
         }
     }
+
 </script>
 
 <!-- HTML START -->
@@ -37,9 +40,9 @@
     <div class="inputs">
         {#each Array(5) as _, i}
             {#if word.length > i}
-                <Slot bind:char={word[i]} />
+                <Slot bind:state={slot_states[i]} bind:char={word[i]}/>
             {:else}
-                <Slot />
+                <Slot bind:state={slot_states[i]}/>
             {/if}
         {/each}
     </div>
