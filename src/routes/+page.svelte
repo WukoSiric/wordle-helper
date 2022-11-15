@@ -24,12 +24,13 @@
     <meta charset="utf-8">
     <title>Wordle Helper</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=VT323">
 </svelte:head>
 <svelte:window on:keydown={handle_input}/>
 
 <div class="page">
     <div class="header">
-        <h1>🟩🟨Wordle Helper</h1>
+        <h1>WORDLE HELPER</h1>
         <p>Type in your guess and try clicking each box!</p>
     </div>
 
@@ -66,7 +67,8 @@
 
     h1 {
         margin-bottom: 10px;
-        font-size: 3em;
+        font-weight: lighter;
+        font-size: 3.5em;
     }
 
     .inputs {
