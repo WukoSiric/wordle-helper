@@ -1,27 +1,21 @@
 <script type="ts">
-    let word: String[] = ["A", "B", "C", "D", "E"]
+    import Footer from "./Footer.svelte";
 
-    function check_is_letter(char: string): boolean {
-        if (char.length > 1) {
-            return false
+    let word: String[] = []
+    import * as inputs from './utils/inputs'
+
+    function handle_input(event: KeyboardEvent) {
+        let input = event.key
+        if (inputs.is_backspace(input)) {
+            word = inputs.handle_backspace(word)
+            return
         }
-        return /[a-zA-Z]/.test(char)
-    }
-
-    function handle_backspace() {
-
-    }
-
-    function handle_typing(event: KeyboardEvent) {
-        //If string is full, reset
-        let input: string = event.key
-        if (!check_is_letter(input)) return
-        if(word.length == 5) {
-            word.length = 0
+        if (inputs.check_is_letter(input)) {
+            if (!inputs.word_full(word)) {
+                word = inputs.add_letter(word, input)
+            }
         }
-
-        word[word.length] = input.toUpperCase()
-    } 
+    }
 </script>
 
 <!-- HTML START -->
@@ -30,11 +24,12 @@
     <title>Wordle Helper</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </svelte:head>
-<svelte:window on:keydown={handle_typing}/>
+<svelte:window on:keydown={handle_input}/>
 
 <div class="page">
     <div class="header">
         <h1>🟩🟨Wordle Helper</h1>
+        
         <p>Type in your guess and try clicking each box!</p>
     </div>
 
@@ -45,6 +40,8 @@
             </div>
         {/each}
     </div>
+
+    <Footer --color="white" />
 
 </div>
 
@@ -90,7 +87,4 @@
         color: white;
         border: 2px solid #3a3a3c;
     }
-
-    
-
 </style>
